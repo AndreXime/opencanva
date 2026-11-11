@@ -1,0 +1,4 @@
+export const DEFAULT_TEXT_LINE_HEIGHT = 1.3
+
+/** @deprecated use DEFAULT_TEXT_LINE_HEIGHT */
+export const TEXT_LINE_HEIGHT = DEFAULT_TEXT_LINE_HEIGHT
