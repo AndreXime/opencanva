@@ -25,15 +25,15 @@ npm run typecheck
 npm run lint
 ```
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers)
 
 Configuração no painel:
 
 - **Build command:** `npm run build`
-- **Build output directory:** `dist`
+- **Deploy command:** `npx wrangler deploy`
 - **Node version:** `26` (via `.nvmrc`)
 
-SPA fallback em `public/_redirects` (`/* → /index.html`).
+SPA via `wrangler.jsonc` (`assets.not_found_handling`).
 
 ## O que tem
 
