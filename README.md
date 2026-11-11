@@ -25,6 +25,16 @@ npm run typecheck
 npm run lint
 ```
 
+## Deploy (Cloudflare Pages)
+
+Configuração no painel:
+
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+- **Node version:** `26` (via `.nvmrc`)
+
+SPA fallback em `public/_redirects` (`/* → /index.html`).
+
 ## O que tem
 
 - Páginas, camadas, seleção, drag, resize e snap
