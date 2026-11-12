@@ -41,34 +41,42 @@ export function BottomBar() {
   }
 
   return (
-    <footer className="flex h-12 shrink-0 items-center gap-3 border-t border-editor-border bg-editor-surface px-3">
-      <button type="button" className={btnLight} onClick={addPage}>
+    <footer className="flex h-12 shrink-0 items-center gap-1.5 overflow-x-auto border-t border-editor-border bg-editor-surface px-2 sm:gap-3 sm:px-3">
+      <button
+        type="button"
+        className={`${btnLight} touch-manipulation shrink-0`}
+        onClick={addPage}
+      >
         <FilePlus2 size={15} />
-        Página
+        <span className="hidden sm:inline">Página</span>
       </button>
-      <button type="button" className={btnLight} onClick={duplicatePage}>
+      <button
+        type="button"
+        className={`${btnLight} touch-manipulation shrink-0`}
+        onClick={duplicatePage}
+      >
         <CopyPlus size={15} />
-        Duplicar
+        <span className="hidden sm:inline">Duplicar</span>
       </button>
 
-      <div className="mx-1 h-5 w-px bg-editor-border" />
+      <div className="mx-0.5 hidden h-5 w-px shrink-0 bg-editor-border sm:mx-1 sm:block" />
 
-      <div className="flex items-center gap-1">
+      <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
         <button
           type="button"
-          className={btnLight}
+          className={`${btnLight} touch-manipulation`}
           onClick={goPrev}
           disabled={activeIndex <= 0}
           aria-label="Página anterior"
         >
           <ChevronLeft size={16} />
         </button>
-        <span className="min-w-24 text-center text-[13px] font-semibold text-editor-text">
+        <span className="min-w-14 text-center text-[13px] font-semibold text-editor-text sm:min-w-24">
           {activeIndex + 1} / {document.pages.length}
         </span>
         <button
           type="button"
-          className={btnLight}
+          className={`${btnLight} touch-manipulation`}
           onClick={goNext}
           disabled={activeIndex >= document.pages.length - 1}
           aria-label="Próxima página"
@@ -78,7 +86,7 @@ export function BottomBar() {
         {document.pages.length > 1 ? (
           <button
             type="button"
-            className="rounded-lg p-1.5 text-editor-subtle hover:bg-red-50 hover:text-editor-danger"
+            className="touch-manipulation rounded-lg p-1.5 text-editor-subtle hover:bg-red-50 hover:text-editor-danger"
             title="Excluir página"
             onClick={() => deletePage(activePage.id)}
           >
@@ -91,7 +99,7 @@ export function BottomBar() {
 
       <button
         type="button"
-        className={btnLight}
+        className={`${btnLight} touch-manipulation shrink-0`}
         onClick={() => {
           const area = window.document.getElementById('design-canvas')
           if (!area) {
@@ -105,7 +113,7 @@ export function BottomBar() {
       </button>
       <button
         type="button"
-        className={btnLight}
+        className={`${btnLight} touch-manipulation shrink-0`}
         onClick={() => setZoom(zoom / 1.1)}
         aria-label="Diminuir zoom"
       >
@@ -117,18 +125,18 @@ export function BottomBar() {
         max={200}
         value={Math.round(zoom * 100)}
         onChange={(event) => setZoom(Number(event.target.value) / 100)}
-        className="w-28 accent-editor-accent"
+        className="hidden w-28 accent-editor-accent sm:block"
         aria-label="Zoom"
       />
       <button
         type="button"
-        className={btnLight}
+        className={`${btnLight} touch-manipulation shrink-0`}
         onClick={() => setZoom(zoom * 1.1)}
         aria-label="Aumentar zoom"
       >
         <Plus size={15} />
       </button>
-      <span className="min-w-12 text-center text-[13px] font-semibold text-editor-subtle">
+      <span className="min-w-10 shrink-0 text-center text-[13px] font-semibold text-editor-subtle sm:min-w-12">
         {Math.round(zoom * 100)}%
       </span>
     </footer>

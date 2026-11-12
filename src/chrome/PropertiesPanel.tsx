@@ -16,6 +16,7 @@ import {
   FlipVertical2,
   Italic,
   Underline,
+  X,
 } from 'lucide-react'
 import { useEditorStore } from '../store/editorStore'
 import type { DesignElement, ImageElement, TextElement } from '../document/types'
@@ -64,9 +65,14 @@ const typeLabels: Record<DesignElement['type'], string> = {
   icon: 'Ícone',
 }
 
-export function PropertiesPanel() {
+export function PropertiesPanel({
+  variant = 'dock',
+}: {
+  variant?: 'dock' | 'sheet'
+}) {
   const document = useEditorStore((state) => state.document)
   const selectedIds = useEditorStore((state) => state.selectedIds)
+  const clearSelection = useEditorStore((state) => state.clearSelection)
   const updateElements = useEditorStore((state) => state.updateElements)
   const bringForward = useEditorStore((state) => state.bringForward)
   const sendBackward = useEditorStore((state) => state.sendBackward)
@@ -124,10 +130,30 @@ export function PropertiesPanel() {
       : `${selected.length} selecionados`
     : typeLabels[element.type]
 
+  const sheet = variant === 'sheet'
+
   return (
     <>
-      <aside className="flex w-[280px] shrink-0 flex-col gap-3 overflow-auto border-l border-editor-border bg-editor-surface p-4">
-        <h2 className={panelTitle}>{title}</h2>
+      <aside
+        className={
+          sheet
+            ? 'flex min-h-0 w-full flex-1 flex-col gap-3 overflow-auto rounded-t-2xl border border-editor-border bg-editor-surface p-4 shadow-2xl'
+            : 'flex w-[280px] shrink-0 flex-col gap-3 overflow-auto border-l border-editor-border bg-editor-surface p-4'
+        }
+      >
+        <div className="flex items-center justify-between gap-2">
+          <h2 className={panelTitle}>{title}</h2>
+          {sheet ? (
+            <button
+              type="button"
+              className="touch-manipulation rounded-lg p-1.5 text-editor-subtle hover:bg-editor-muted hover:text-editor-text"
+              onClick={clearSelection}
+              aria-label="Fechar propriedades"
+            >
+              <X size={18} />
+            </button>
+          ) : null}
+        </div>
 
         <div className="flex flex-col gap-1.5">
           <span className={fieldLabel}>Alinhar</span>

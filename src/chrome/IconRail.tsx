@@ -18,7 +18,10 @@ export function IconRail() {
   const setSidebarTab = useEditorStore((state) => state.setSidebarTab)
 
   return (
-    <nav className="flex w-[88px] shrink-0 flex-col items-stretch gap-1.5 border-r border-editor-border bg-editor-bg px-2.5 py-3">
+    <nav
+      className="flex shrink-0 items-stretch gap-1 border-editor-border bg-editor-bg max-md:w-full max-md:flex-row max-md:justify-around max-md:border-t max-md:px-1 max-md:pt-1 max-md:pb-[max(0.35rem,env(safe-area-inset-bottom))] md:w-[88px] md:flex-col md:gap-1.5 md:border-r md:px-2.5 md:py-3"
+      aria-label="Ferramentas"
+    >
       {items.map((item) => {
         const active = sidebarTab === item.id
         const Icon = item.icon
@@ -27,7 +30,7 @@ export function IconRail() {
             key={item.id}
             type="button"
             onClick={() => setSidebarTab(item.id)}
-            className={`flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-[11px] font-semibold leading-tight transition-colors duration-200 ${
+            className={`flex touch-manipulation flex-col items-center gap-1 rounded-xl text-[10px] font-semibold leading-tight transition-colors duration-200 max-md:min-h-12 max-md:flex-1 max-md:justify-center max-md:px-1 max-md:py-1.5 md:gap-1.5 md:px-2 md:py-3 md:text-[11px] ${
               active
                 ? 'bg-editor-accent-soft text-editor-accent'
                 : 'text-editor-subtle hover:bg-editor-muted hover:text-editor-text'

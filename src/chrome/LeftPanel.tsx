@@ -1,11 +1,11 @@
 import { useRef, type ChangeEvent } from 'react'
-import { ImagePlus, Type } from 'lucide-react'
+import { ImagePlus, Type, X } from 'lucide-react'
 import { useEditorStore } from '../store/editorStore'
 import { btnPrimary } from './ui'
 import { ElementsPanel } from './ElementsPanel'
 import { PageSettings } from './PageSettings'
 
-export function LeftPanel() {
+export function LeftPanel({ onClose }: { onClose?: () => void }) {
   const sidebarTab = useEditorStore((state) => state.sidebarTab)
   const addText = useEditorStore((state) => state.addText)
   const addImage = useEditorStore((state) => state.addImage)
@@ -42,9 +42,19 @@ export function LeftPanel() {
   const title = sidebarTab ? titles[sidebarTab] : ''
 
   return (
-    <aside className="flex h-full w-[320px] flex-col border-r border-editor-border bg-editor-bg">
-      <div className="border-b border-editor-border px-4 py-3">
+    <aside className="flex h-full w-full flex-col border-editor-border bg-editor-bg md:w-[320px] md:border-r">
+      <div className="flex items-center justify-between gap-2 border-b border-editor-border px-4 py-3">
         <h2 className="m-0 text-base font-bold text-editor-text">{title}</h2>
+        {onClose ? (
+          <button
+            type="button"
+            className="touch-manipulation rounded-lg p-1.5 text-editor-subtle hover:bg-editor-muted hover:text-editor-text"
+            onClick={onClose}
+            aria-label="Fechar"
+          >
+            <X size={18} />
+          </button>
+        ) : null}
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-auto p-4">

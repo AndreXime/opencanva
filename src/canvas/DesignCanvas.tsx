@@ -186,7 +186,7 @@ export function DesignCanvas() {
           <LayoutTemplate className="mb-1 text-editor-accent" size={36} />
           <strong className="text-lg text-editor-text">Comece seu design</strong>
           <span className="max-w-80 text-sm leading-snug">
-            Use a barra lateral para adicionar formas, texto ou imagens.
+            Use o menu de ferramentas para adicionar formas, texto ou imagens.
           </span>
         </div>
       ) : null}
